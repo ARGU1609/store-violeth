@@ -6,17 +6,20 @@
 
     <div class="max-w-7xl w-full mx-auto px-10 font-bold mb-2">
       <%= link_to "Products", products_path, class: "text-xl font-bold text-black hover:underline hover:text-blue-500 bg-blue-50 rounded-lg py-3 px-5" %>
-      <%= link_to "> #{ @product.name}", @product, class: "text-xl font-bold text-black" %>
+      <%= link_to "> #{ @product.category.name}", @product.category, class: "text-xl font-bold text-black" if @product.category %>
+      <%= link_to "> #{ @product.name}", @product, class: "text-xl font-bold text-black" %> 
     </div>
 <br>
   <div class="grid grid-cols-2">
    <div class="max-w-md w-full mx-auto">
+     <% if @product.images.any? %>
      <%= image_tag @product.images.first, class: "w-full h-96 object-cover"%>
      <div class="grid grid-cols-3 gap-4 mt-4">
        <% @product.images[1..-1].each do |image| %>
          <%= image_tag image, class: "w-full h-32 object-cover" %>
        <% end %>
      </div>
+     <% end %>
    </div>
    <div class="max-w-xl">
      <h1 class="text-5xl font-sweety text-blue-800 "><%= @product.name %></h1>

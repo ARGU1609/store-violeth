@@ -1,26 +1,32 @@
 <div class="w-full flex flex-col">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="relative flex items-center justify-center">
+    <% if @category.image.attached? %>
+      <%= image_tag @category.image.first, class: "w-full h-80 object-cover rounded-lg brightness-75 hover:brightness-50 transition-all duration-250" %>
     <% end %>
-
-   
-
-  <div class="relative flex items-center justify-center ">
-    <%= image_tag @category.image.first, class: "w-full h-80 object-cover rounded-lg brightness-75 hover:brightness-50 transition-all duration-250" if @category.image.attached? %>
     <h1 class="font-bold text-8xl text-center font-sweety text-white absolute"><%= @category.name %></h1>
   </div>
 
-    <div class="max-w-xl text-black text-3xl font-bold mx-auto mt-4">
-         <%= @category.description %>
-       </div>
+  <div class="max-w-xl text-black text-3xl font-bold mx-auto mt-4">
+    <%= @category.description %>
+  </div>
 
-    <% if current_admin %>
-      <div class="w-full flex justify-center items-center mt-16 gap-4"> 
+  <div id="products" class="min-w-full grid grid-cols-4 gap-8">
+    <% @category.products.each do |product| %>
+      <%= render "products/product", product: product %>
+    <% end %>
+  </div> 
+
+  <% if current_admin %>
+    <div class="w-full flex justify-center items-center mt-16 gap-4"> 
       <%= link_to "Edit this category", edit_category_path(@category), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <%= link_to "Back to categories", categories_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <div class="inline-block ml-2">
         <%= button_to "Destroy this category", @category, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
       </div>
-      </div>
-    <% end %>
+    </div>
+  <% end %>
 </div>
