@@ -5,15 +5,52 @@
 
   <% content_for :title, "The Best Products" %>
 
-    <h1 class="font-bold text-8xl text-center font-sweety text-black">The Best Products</h1>
+  <h1 class="font-bold text-8xl text-center font-sweety text-black">VIOLETH STORE</h1>
+
+  <br>
+  <br>
 
   <div id="products" class="min-w-full grid md:grid-cols-4 gap-8">
     <% @products.each do |product| %>
       <%= render product %>
     <% end %>
   </div>
-<br>
-<div class="mt-4 w-full font-bold">  
-  <%= link_to "Shop by category", categories_path, class: "text-xl font-bold text-black bg-blue-200 rounded-lg py-3 px-5" %>
+
+  <br>
+
+  <div class="mt-4 w-full font-bold">  
+    <%= link_to "Shop by category", categories_path, class: "text-xl font-bold text-black bg-blue-200 rounded-lg py-3 px-5" %>
+  </div>
+
+  <div class="space-y-8 mt-8 text-center justify-center">
+    <h3 class="text-3xl font-bold text-white  ">
+      Contact:
+    </h3>
+    <ul class="mt-4 space-y-4">
+      <li>
+        <p class="text-base leading-6 text-white">
+          Address: <%= link_to "Calle 53A # 92A-48, Medellin, Colombia" %>
+        </p>
+      </li>
+      <li>
+        <p class="text-base leading-6 text-white">
+          Email: <%= link_to "noslenque931gmail.com" %>
+        </p>
+      </li>
+      <li>
+        <p class="text-base leading-6 text-white">
+          Phone: <%= link_to "+573022069265"%>
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="border-t border-gray-700 mt-8 text-center justify-center">
+    <div class="max-w-6xl mx-auto px-4 py-6 md:flex md:items-center md:justify-between">
+      <p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1">
+        &copy; <%= Time.now.year %> Ecomm, Inc. All rights reserved.
+      </p>
+    </div>
 </div>
+
+
 </div>

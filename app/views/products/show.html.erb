@@ -1,15 +1,15 @@
 <div class="w-full">
   
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
 
-    <div class="max-w-7xl w-full mx-auto px-10 font-bold mb-2">
-      <%= link_to "Products", products_path, class: "text-xl font-bold text-black hover:underline hover:text-blue-500 bg-blue-50 rounded-lg py-3 px-5" %>
-      <%= link_to "> #{ @product.category.name}", @product.category, class: "text-xl font-bold text-black" if @product.category %>
-      <%= link_to "> #{ @product.name}", @product, class: "text-xl font-bold text-black" %> 
-    </div>
-<br>
+  <div class="max-w-7xl w-full mx-auto px-10 font-bold mb-2">
+    <%= link_to "Products", products_path, class: "text-xl font-bold text-black hover:underline hover:text-blue-500 bg-blue-50 rounded-lg py-3 px-5" %>
+    <%= link_to "> #{ @product.category.name}", @product.category, class: "text-xl font-bold text-black" if @product.category %>
+    <%= link_to "> #{ @product.name}", @product, class: "text-xl font-bold text-black" %> 
+  </div>
+  <br>
   <div class="grid grid-cols-2">
    <div class="max-w-md w-full mx-auto">
      <% if @product.images.any? %>
@@ -31,14 +31,21 @@
    </div>
   </div>
 
-   <% if current_admin %>
-   <div class="w-full flex justify-center items-center mt-16 gap-4">
-    <%= link_to "Edit this product", edit_product_path(@product), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to products", products_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <p><strong>Available Sizes:</strong></p>
+<ul>
+  <% @product.sizes.each do |size| %>
+    <li><%= size.name %></li>
+  <% end %>
+</ul>
 
-    <div class="inline-block ml-2">
-    <%= button_to "Destroy this product", @product, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <% end %>
+
+ <div class="w-full flex justify-center items-center mt-16 gap-4">
+  <%= link_to "Edit this product", edit_product_path(@product), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to products", products_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+  <div class="inline-block ml-2">
+  <%= button_to "Destroy this product", @product, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
   </div>
+ 
+</div>
 </div>
