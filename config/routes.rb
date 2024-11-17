@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :categories
   devise_for :admins
+  devise_for :users
+  resources :categories
   resources :products
   resource :admin, only: [:show], controller: :admin
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
